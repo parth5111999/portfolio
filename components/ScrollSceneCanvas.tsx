@@ -22,7 +22,7 @@ export function ScrollSceneCanvas({
   }
 
   return (
-    <div className="pointer-events-none fixed inset-0">
+    <div className="fixed inset-0">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 55 }}
         className="h-full w-full"
