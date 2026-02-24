@@ -13,8 +13,9 @@ export function CameraRig({ scroll }: { scroll: number }) {
     const targetScroll = scroll;
     scrollRef.current += (targetScroll - scrollRef.current) * 0.08;
 
-    const minZ = 6;
-    const maxZ = -18;
+    // Stronger forward motion so scroll is clearly visible
+    const minZ = 14;
+    const maxZ = -40;
     const z = minZ + (maxZ - minZ) * scrollRef.current;
 
     const tiltStrength = 0.15;
@@ -24,11 +25,11 @@ export function CameraRig({ scroll }: { scroll: number }) {
     tiltRef.current.y += (targetTiltY - tiltRef.current.y) * 0.08;
 
     camera.position.set(
-      tiltRef.current.y * viewport.width * 0.15,
-      tiltRef.current.x * viewport.height * 0.15,
+      tiltRef.current.y * viewport.width * 0.2,
+      tiltRef.current.x * viewport.height * 0.2,
       z
     );
-    camera.lookAt(0, 0, -8);
+    camera.lookAt(0, 0, -20);
   });
 
   return null;
