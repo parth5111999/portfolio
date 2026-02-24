@@ -17,10 +17,6 @@ export function ScrollSceneCanvas({
   isMobile,
   onPanelSelect
 }: ScrollSceneCanvasProps) {
-  if (isMobile) {
-    return null;
-  }
-
   return (
     <div className="fixed inset-0">
       <Canvas
