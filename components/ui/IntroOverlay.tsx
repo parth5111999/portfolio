@@ -6,11 +6,12 @@ type IntroOverlayProps = {
 };
 
 export function IntroOverlay({ progress, isMobile }: IntroOverlayProps) {
-  const fadeOutStart = 0.0;
-  const fadeOutEnd = 0.2;
-  const t = clamp01((progress - fadeOutStart) / (fadeOutEnd - fadeOutStart));
-  const opacity = 1 - t;
-  const translateY = t * 32;
+  // Fade in once we move "inside" the clouds
+  const fadeInStart = 0.18;
+  const fadeInEnd = 0.35;
+  const t = clamp01((progress - fadeInStart) / (fadeInEnd - fadeInStart));
+  const opacity = t;
+  const translateY = (1 - t) * 32;
 
   if (isMobile) {
     return null;
@@ -22,9 +23,6 @@ export function IntroOverlay({ progress, isMobile }: IntroOverlayProps) {
       style={{ opacity, transform: `translateY(${translateY}px)` }}
     >
       <div className="max-w-3xl text-center space-y-4">
-        <p className="text-xs md:text-sm font-semibold tracking-[0.25em] text-sky-400 uppercase">
-          React Three Fiber · Next.js · Tailwind
-        </p>
         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
           Hi, I&apos;m{" "}
           <span className="text-sky-400 drop-shadow-[0_0_25px_rgba(56,189,248,0.7)]">
@@ -33,9 +31,9 @@ export function IntroOverlay({ progress, isMobile }: IntroOverlayProps) {
           .
         </h1>
         <p className="text-base md:text-xl text-slate-200">
-          I build{" "}
-          <span className="text-sky-300">creative digital experiences</span>{" "}
-          that blend storytelling, motion, and technology.
+          I&apos;m an SEO-focused{" "}
+          <span className="text-sky-300">creative digital experience</span>{" "}
+          builder who blends strategy, content, and motion.
         </p>
       </div>
     </div>
