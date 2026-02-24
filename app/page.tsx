@@ -30,6 +30,8 @@ export default function HomePage() {
     setActiveProjectId(null);
   };
 
+  const showContentSections = scrollProgress > 0.05 || isMobile;
+
   return (
     <main className="relative min-h-[280vh] bg-slate-950 text-slate-50">
       <ScrollSceneCanvas
@@ -58,34 +60,36 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      {/* Push explanatory content below initial hero viewport on desktop */}
-      <div className="relative z-10 mt-[110vh] space-y-24 px-6">
-        <section className="flex min-h-[60vh] items-center justify-center">
-          <div className="max-w-xl space-y-4 rounded-2xl bg-slate-900/80 p-8 backdrop-blur">
-            <h2 className="text-2xl md:text-3xl font-semibold">
-              Smooth cinematic scroll
-            </h2>
-            <p className="text-slate-300 text-sm md:text-base">
-              As you scroll, the camera glides through a 3D space, easing
-              between sections while subtle parallax reacts to your mouse. This
-              creates a cinematic, story-like journey through the site.
-            </p>
-          </div>
-        </section>
+      {showContentSections ? (
+        // Explanatory content appears only after a small scroll on desktop
+        <div className="relative z-10 mt-[110vh] space-y-24 px-6">
+          <section className="flex min-h-[60vh] items-center justify-center">
+            <div className="max-w-xl space-y-4 rounded-2xl bg-slate-900/80 p-8 backdrop-blur">
+              <h2 className="text-2xl md:text-3xl font-semibold">
+                Smooth cinematic scroll
+              </h2>
+              <p className="text-slate-300 text-sm md:text-base">
+                As you scroll, the camera glides through a 3D space, easing
+                between sections while subtle parallax reacts to your mouse.
+                This creates a cinematic, story-like journey through the site.
+              </p>
+            </div>
+          </section>
 
-        <section className="flex min-h-[60vh] items-center justify-center">
-          <div className="max-w-xl space-y-4 rounded-2xl bg-slate-900/80 p-8 backdrop-blur">
-            <h2 className="text-2xl md:text-3xl font-semibold">
-              Project experiments
-            </h2>
-            <p className="text-slate-300 text-sm md:text-base">
-              In the scene, glowing panels represent different experiments and
-              projects. Hover and click them to reveal more details in a modal
-              overlay without breaking the flow of the scroll experience.
-            </p>
-          </div>
-        </section>
-      </div>
+          <section className="flex min-h-[60vh] items-center justify-center">
+            <div className="max-w-xl space-y-4 rounded-2xl bg-slate-900/80 p-8 backdrop-blur">
+              <h2 className="text-2xl md:text-3xl font-semibold">
+                Project experiments
+              </h2>
+              <p className="text-slate-300 text-sm md:text-base">
+                In the scene, glowing panels represent different experiments and
+                projects. Hover and click them to reveal more details in a modal
+                overlay without breaking the flow of the scroll experience.
+              </p>
+            </div>
+          </section>
+        </div>
+      ) : null}
 
       <Modal
         open={activeProjectId !== null}
